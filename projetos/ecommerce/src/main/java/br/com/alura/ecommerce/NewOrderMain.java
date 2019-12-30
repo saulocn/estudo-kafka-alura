@@ -5,7 +5,8 @@ import java.util.concurrent.ExecutionException;
 import static java.util.UUID.randomUUID;
 
 public class NewOrderMain {
-    public static void main(String[] args) throws ExecutionException, InterruptedException {
+    public static void main(String[] args)
+            throws ExecutionException, InterruptedException {
         try(KafkaDispatcher dispatcher = new KafkaDispatcher()) {
             for (int i = 0; i < 10; i++) {
                 String key = randomUUID().toString();
