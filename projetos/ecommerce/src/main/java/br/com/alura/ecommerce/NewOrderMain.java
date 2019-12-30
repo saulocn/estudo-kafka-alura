@@ -15,7 +15,7 @@ import static java.util.UUID.*;
 public class NewOrderMain {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         KafkaProducer<String, String> producer = new KafkaProducer<String, String>(properties());
-        for (int i=0;i<100;i++){
+        for (int i=0;i<10;i++){
             String key = randomUUID().toString();
             String value = "1234,4321,31231.223";
             String email = "Thank you! We are processing your order!";
