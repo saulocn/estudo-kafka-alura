@@ -6,12 +6,13 @@ import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.serialization.StringDeserializer;
 
+import java.io.Closeable;
 import java.time.Duration;
 import java.util.Collections;
 import java.util.Properties;
 import java.util.UUID;
 
-class KafkaService {
+class KafkaService implements Closeable {
 
     private final KafkaConsumer<String, String> consumer;
     private final ConsumerFunction parse;
@@ -43,5 +44,10 @@ class KafkaService {
         properties.setProperty(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, "1");
         properties.setProperty(ConsumerConfig.GROUP_ID_CONFIG, groupId);
         return properties;
+    }
+
+    @Override
+    public void close() {
+        consumer.close();
     }
 }
