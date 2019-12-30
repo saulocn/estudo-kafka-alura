@@ -1,0 +1,5 @@
+/home/saulo/workspace/estudo_kafka/projetos/ecommerce/common-kafka/src/main/java/br/com/alura/GsonSerializer.java
+/home/saulo/workspace/estudo_kafka/projetos/ecommerce/common-kafka/src/main/java/br/com/alura/GsonDeserializer.java
+/home/saulo/workspace/estudo_kafka/projetos/ecommerce/common-kafka/src/main/java/br/com/alura/ConsumerFunction.java
+/home/saulo/workspace/estudo_kafka/projetos/ecommerce/common-kafka/src/main/java/br/com/alura/KafkaService.java
+/home/saulo/workspace/estudo_kafka/projetos/ecommerce/common-kafka/src/main/java/br/com/alura/KafkaDispatcher.java
