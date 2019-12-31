@@ -10,6 +10,7 @@
         <module name="service-new-order" />
         <module name="service-log" />
         <module name="service-email" />
+        <module name="service-httpecommerce" />
         <module name="common-kafka" />
         <module name="service-users" />
       </profile>
@@ -19,6 +20,8 @@
       <module name="ecommerce" target="8" />
       <module name="service-email" target="8" />
       <module name="service-fraud-detector" target="8" />
+      <module name="service-http" target="8" />
+      <module name="service-httpecommerce" target="8" />
       <module name="service-log" target="8" />
       <module name="service-new-order" target="8" />
       <module name="service-users" target="8" />
