@@ -44,10 +44,8 @@ class KafkaService<T> implements Closeable {
                 for (ConsumerRecord<String, T> record : records) {
                     try {
                         parse.consume(record);
-                    } catch (ExecutionException e) {
-                        // so far, just logging the exception for this message
-                        e.printStackTrace();
-                    } catch (InterruptedException e) {
+                    } catch (Exception e) {
+                        // Only catches exception cause no matters which exception, go to next message
                         // so far, just logging the exception for this message
                         e.printStackTrace();
                     }
