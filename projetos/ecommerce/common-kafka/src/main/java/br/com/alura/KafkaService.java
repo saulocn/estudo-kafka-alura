@@ -9,6 +9,7 @@ import org.apache.kafka.common.serialization.StringDeserializer;
 import java.io.Closeable;
 import java.time.Duration;
 import java.util.*;
+import java.util.concurrent.ExecutionException;
 import java.util.regex.Pattern;
 
 class KafkaService<T> implements Closeable {
@@ -41,7 +42,15 @@ class KafkaService<T> implements Closeable {
             if (!records.isEmpty()) {
                 System.out.println(records.count() + "registros encontrados!");
                 for (ConsumerRecord<String, T> record : records) {
-                    parse.consume(record);
+                    try {
+                        parse.consume(record);
+                    } catch (ExecutionException e) {
+                        // so far, just logging the exception for this message
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        // so far, just logging the exception for this message
+                        e.printStackTrace();
+                    }
                 }
             }
         }
