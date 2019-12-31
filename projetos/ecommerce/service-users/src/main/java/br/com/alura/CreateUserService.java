@@ -4,6 +4,7 @@ import org.apache.kafka.clients.consumer.ConsumerRecord;
 
 import java.math.BigDecimal;
 import java.sql.*;
+import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 
 public class CreateUserService {
@@ -13,9 +14,13 @@ public class CreateUserService {
     CreateUserService() throws SQLException {
         String url  = "jdbc:sqlite:target/users_database.db";
         this.connection = DriverManager.getConnection(url);
-        connection.createStatement().execute("create table Users(" +
-                "uuid varchar(200) primary key," +
-                "email varchhar(200))");
+        try {
+            connection.createStatement().execute("create table Users(" +
+                    "uuid varchar(200) primary key," +
+                    "email varchhar(200))");
+        } catch (SQLException e){
+            // Be careful, the sql could be really wront
+        }
     }
 
     public static void main(String[] args) throws SQLException {
@@ -37,13 +42,13 @@ public class CreateUserService {
         System.out.println(record.value());
         Order order = record.value();
         if(isNewUSer(order.getEmail())){
-            insertNewUser(order.getEmail());
+            insertNewUser(UUID.randomUUID().toString(), order.getEmail());
         }
     }
 
-    private void insertNewUser(String email) throws SQLException {
+    private void insertNewUser(String uuid, String email) throws SQLException {
         PreparedStatement insert = connection.prepareStatement("INSERT INTO Users(uuid, email) VALUES (?,?)");
-        insert.setString(1, "uuid");
+        insert.setString(1, uuid);
         insert.setString(2, email);
         insert.execute();
         System.out.println("Usuário uuid e "+email+ " adicionado!");
